@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Condenser Design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="CondenserDesign.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>Condenser Design</h1>
+        <br>
+        <form class="border p-3">
+
+            <div class="form-group row">
+                <label for="HD" class="col-sm-3 col-form-label ">Heat Duty (GH/h)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="HD">
+                </div>
+
+                <label for="NP" class="col-sm-3 col-form-label ">Number of Passes</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="NP">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="CWT" class="col-sm-3 col-form-label ">Cooling Water Temp (C)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="CWT">
+                </div>
+
+                <label for="TOD" class="col-sm-3 col-form-label ">Tube Outer Diameter (inch)</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="TOD">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="CWVF" class="col-sm-3 col-form-label ">Cooling Water Volume Flow (m^3/h)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="CWVF">
+                </div>
+
+                <label for="TM" class="col-sm-3 col-form-label ">Tube Material</label>
+                <div class="col-sm-3  ">
+                    <!-- <input type="text" class="form-control" id="TM"> -->
+                    <select id="TM" class="form-control">
+                        <option value="1"> </option>
+                        <option value="2">Cu Fe 194</option>
+                        <option value="3">Arsenical Cu</option>
+                        <option value="4">Admiralty</option>
+                        <option value="5">Al Brass</option>
+                        <option value="6">Al Bronze</option>
+                        <option value="7">Carbon Steel</option>
+                        <option value="8">Cu Ni 90-10</option>
+                        <option value="9">Cu Ni 70-30</option>
+                        <option value="10">SS (UNS S43035)</option>
+                        <option value="11">Titanium Grades 1 & 2</option>
+                        <option value="12">SS (UNS S44660)</option>
+                        <option value="13">SS (UNS S44735)</option>
+                        <option value="14">SSTP 304</option>
+                        <option value="15">SS TP 316 I 317</option>
+                        <option value="16">SS (UNS N08367)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="RBP" class="col-sm-3 col-form-label ">Required Back Pressure (mmHGa)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="RBP">
+                </div>
+
+                <label for="PC1" class="col-sm-3 col-form-label ">1st Performance Curve T</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="PC1">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="PST" class="col-sm-3 col-form-label ">Percentage Spare Tubes</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="PST">
+                </div>
+
+                <label for="PC2" class="col-sm-3 col-form-label ">2nd Performance Curve T</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="PC2">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="S" class="col-sm-3 col-form-label ">Salinity (PPM)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="S">
+                </div>
+
+                <label for="PC3" class="col-sm-3 col-form-label ">3rd Performance Curve T</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="PC3">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="TV" class="col-sm-3 col-form-label ">Tube Velocity(m/s)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="TV">
+                </div>
+
+                <label for="PC4" class="col-sm-3 col-form-label ">4th Performance Curve T</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="PC4">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="CF" class="col-sm-3 col-form-label ">Cleanliness Factor</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="CF">
+                </div>
+
+                <label for="PC5" class="col-sm-3 col-form-label ">5th Performance Curve T</label>
+                <div class="col-sm-3  ">
+                    <input type="text" class="form-control" id="PC5">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="BWG" class="col-sm-3 col-form-label ">Tube BWG</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="BWG">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="button" onclick="Calculate()">Calculate</button>
+                <button class="btn btn-primary" type="button" onclick="Fill()">Fill Data</button>
+
+            </div>
+
+        </form>
+        <br>
+        <form class="border p-3">
+            <div class="form-group row">
+                <label for="OHTC" class="col-sm-4 col-form-label ">Overall Heat Transfer Coefficient (W/m^2.K) </label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="OHTC">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="SA" class="col-sm-4 col-form-label ">Surface Area (m^2)</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="SA">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="TTQ" class="col-sm-4 col-form-label ">Total Tube Quantity</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="TTQ">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ETL" class="col-sm-4 col-form-label ">Eff. Tube Length (m)</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="ETL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="PD" class="col-sm-4 col-form-label ">Pressure Drop (m)</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="PD">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="TR" class="col-sm-4 col-form-label ">Temperature Rise (C)</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="TR">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="LMTD" class="col-sm-4 col-form-label ">LMTD (C)</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control" id="LMTD">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+
+
+
+</html>
