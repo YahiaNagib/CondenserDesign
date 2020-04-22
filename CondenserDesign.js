@@ -1,5 +1,4 @@
 
-
 function Calculate() {
 
     var Heat_Duty = parseFloat(document.getElementById("HD").value)
@@ -35,8 +34,8 @@ function Calculate() {
 
     var thickness = bwg[BWG];
 
-    console.log(tube_material);
-    console.log(cp_cw);
+    // console.log(tube_material);
+    // console.log(cp_cw);
 
     var I_D = OD - 2 * thickness,
         N_tube = ((Q_cw / 3600) * N_p) / ((Math.PI / 4) * Math.pow(((25.4 * I_D) / 1000), 2) * V),
@@ -115,30 +114,81 @@ function Calculate() {
     var Q_curves = 0, Psg = 0, Fw_new, TTD_performance = 0, Uo_new, LMTD_performance;
     var T_exit, TR_performance, T_steam, Back_Pressure;
 
-    for (var j = 0; j < TT.Length; j++)
-    {
+    var dataArr = [], points, dataSet, chartData = [];
+
+    for (var j = 0; j < TT.length; j++) {
         Psg = 0;
-        for (var i = 0; i <= 1.2; i = i + 0.1)
-        {
+
+        for (var i = 0; i <= 1.2; i = i + 0.1) {
             Q_curves = i * (Math.pow(10, 9) * Heat_Duty / 3600);
             //Psg = Psg + 10;
-            oSheet.Cells[k, 1] = Psg;
+
             Fw_new = -4.97e-09 * Math.pow(TT[j], 5) + 7.876e-07 * Math.pow(TT[j], 4) - 4.216e-05 * Math.pow(TT[j], 3) + 0.0006857 * Math.pow(TT[j], 2) + 0.01331 * TT[j] + 0.67;
             Uo_new = (U_corrected / Fw) * Fw_new;
             LMTD_performance = Q_curves / (Uo_new * A_surface);
             T_exit = TT[j] + Q_curves / (ro_cw * cp_cw * Q_cw / 3600);
             TR_performance = T_exit - TT[j];
-            TTD_performance = TR_performance / (-1 + Math.Pow(Math.E, (TR_performance / LMTD_performance)));
+            TTD_performance = TR_performance / (-1 + Math.pow(Math.E, (TR_performance / LMTD_performance)));
             if ((TTD_performance < 2.7778) || Q_curves == 0) {
                 TTD_performance = 2.7778;
             }
             T_steam = TT[j] + TR_performance + TTD_performance;
             Back_Pressure = (9.379e-09) * Math.pow(T_steam, 4) - (2.879e-07) * Math.pow(T_steam, 3) + (3.365e-05) * Math.pow(T_steam, 2) + 0.0001933 * T_steam + 0.006793;
+
+            points = { label: Psg.toString(), y: Back_Pressure };
+            dataArr.push(points);
+
             Psg = Psg + 10;
+
         }
 
+        dataset = {
+            type: "spline",
+            name: TT[j].toString(),
+            showInLegend: true,
+            dataPoints: dataArr
+        };
+
+        chartData.push(dataset);
+
+        dataArr = [];
 
     }
+
+
+
+    var theData = {
+        animationEnabled: true,
+        exportEnabled: true,
+        title: {
+            text: "Condenser Performance Curves"
+        },
+        axisY: {
+            title: "Back Pressure"
+        },
+        toolTip: {
+            shared: true
+        },
+        legend: {
+            cursor: "pointer",
+            // itemclick: toggleDataSeries
+        },
+        data: chartData
+    };
+
+    console.log(theData);
+
+
+
+
+    var chart = new CanvasJS.Chart("chartContainer", theData);
+
+    chart.render();
+
+
+
+
+
 
     document.getElementById("OHTC").value = U_corrected.toFixed(3);
     document.getElementById("SA").value = A_surface.toFixed(3);
